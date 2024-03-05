@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Personnages";
+}
+<div>
+    <h1>Personnages</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Nom</th>
+                <th>Attaque</th>
+                <th>Defence</th>
+                <th>Points de vie</th>
+                <th>Ligne</th>
+                <th>Colonne</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<Personnage>)ViewData["personnages"]!)
+            {
+                <tr>
+                    <td>@(item.numeroPersonnage)</td>
+                    <td>@(item.nomPersonnage)</td>
+                    <td>@(item.pointsAttaquePersonnage)</td>
+                    <td>@(item.pointsDefense)</td>
+                    <td>@(item.pointsVie)</td>
+                    <td>@(item.lignePersonnage)</td>
+                    <td>@(item.colonnePersonnage)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
