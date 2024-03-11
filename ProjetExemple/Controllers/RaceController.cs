@@ -12,15 +12,15 @@ namespace ProjetExemple.Controllers
         {
             _connexionString = configuration.GetConnectionString("MargotEtLesElfes")!;
         }
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            string query = "SELECT * FROM RACE";
+            string query = "SELECT * FROM RACE WHERE codeRace=@id";
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                List<Race> Races = connexion.Query<Race>(query).ToList();
+                List<Race> Races = connexion.Query<Race>(query, new {idcodeRace = id}).ToList();
                 ViewData["Races"] = Races;
             }
-            return View();
+            return View("index");
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿@{
+﻿@* Fichier : Views/Personnages/index.cshtml *@
+@{
     ViewData["Title"] = "Personnages";
 }
+
 <div>
     <h1>Personnages</h1>
     <table>
@@ -13,6 +15,7 @@
                 <th>Points de vie</th>
                 <th>Ligne</th>
                 <th>Colonne</th>
+                <th>Race</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +28,9 @@
                     <td>@(item.pointsDefense)</td>
                     <td>@(item.pointsVie)</td>
                     <td>@(item.lignePersonnage)</td>
+                    
                     <td>@(item.colonnePersonnage)</td>
+                    <td><a asp-controller="Personnages" asp-action="Detail" asp-route-id="@item.numeroPersonnage">Détail</a></td>
                 </tr>
             }
         </tbody>

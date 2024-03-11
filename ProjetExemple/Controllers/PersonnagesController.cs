@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using ProjetExemple.Models;
-using Dapper;
+
 namespace ProjetExemple.Controllers
 {
     public class PersonnagesController : Controller
@@ -12,14 +13,28 @@ namespace ProjetExemple.Controllers
             _connexionString = configuration.GetConnectionString("MargotEtLesElfes")!;
         }
         public IActionResult Index()
+
         {
             string query = "SELECT * FROM PERSONNAGE";
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                List<Personnage> personnages = connexion.Query<Personnage>(query).ToList();
-                ViewData["personnages"] = personnages;
+                List<PersonnageViewModel> personnages = connexion.Query<PersonnageViewModel>(query).ToList();
+                ViewData["personnages"]=personnages;
             }
             return View();
         }
+
+        public IActionResult Detail(int id)
+        {
+            string query = "SELECTE * FROM RACE INNER JOIN PERSONNAGE ON PERSONNAGE.codeRace = RACE.codeRace WHERE codeRace=@id;";
+            using (var connexion = new MySqlConnection(_connexionString))
+            {
+                List<Race>races = connexion.Query<Race>(query, new {id = id}).ToList();
+                ViewData["RACES"] = "detail race";
+
+                var viewModel = new PersonnageViewModel() { races };
+            return View(viewModel);
+        }
     }
 }
+
