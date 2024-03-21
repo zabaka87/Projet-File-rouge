@@ -29,5 +29,9 @@ namespace MagicBook.Controllers
             return View("index");
         }
 
+        public IActionResult Ajouter()
+        {
+            return View();
+        }
     }
 }

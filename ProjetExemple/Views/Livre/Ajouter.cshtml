@@ -1,0 +1,39 @@
+﻿@model Livre
+@{
+    ViewData["Title"] = "Ajout livre";
+}
+<div class="container">
+    <h1>Ajouter un Livre</h1>
+    <form asp-controller="Livre" asp-action="Ajouter" method="post">
+        <div class="div-input">
+            <label asp-for="@Model.ISBN"></label>
+            <input asp-for="@Model.ISBN"/>
+            <span asp-validation-for="@Model.ISBN" class="text-danger"></span>
+        </div>
+        <label asp-for="@Model.TitreLivre"></label>
+        <input asp-for="@Model.TitreLivre"/>
+        <span asp-validation-for="@Model.TitreLivre" class="text-danger"></span>
+        <label asp-for="@Model.ResumeLivre"></label>
+        <input asp-for="@Model.ResumeLivre">
+        <span asp-validation-for="@Model.ResumeLivre" class="text-danger"></span>
+        <label asp-for="@Model.DatePublicationLivre"></label>
+        <input asp-for="@Model.DatePublicationLivre">
+        <span asp-validation-for="@Model.DatePublicationLivre" class="text-danger"></span>
+        @* <label asp-for="@Model.CouvertureLivre"></label>
+        <input asp-for="@Model.CouvertureLivre">
+        <span asp-validation-for="@Model.CouvertureLivre" class="text-danger"></span> *@
+        <input type="submit">
+    </form>
+</div>
+
+@{
+    if (ViewData.ContainsKey("ValidateMessage"))
+    {
+        <p>@ViewData["ValidateMessage"]</p>
+    }
+}
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -36,9 +36,19 @@ namespace MagicBook.Controllers
             return View(utilisateurs);
         }
        
+        public IActionResult Ajouter()
+        {
+            return View();
+        }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
 
-
-
+        public IActionResult Inscription()
+        {
+            return View();
+        }
     }
 }
