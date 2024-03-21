@@ -1,4 +1,4 @@
-namespace ProjetExemple.Models
+namespace MagicBook.Models
 {
     public class ErrorViewModel
     {

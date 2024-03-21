@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Livres";
+}
+
+<div>
+    <h1>Livres</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Titre</th>
+                <th>Resumer</th>
+                <th>Date Publication</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<Livre>)ViewData["livres"]!)
+            {
+                <tr>
+                    <td>@(item.ISBN)</td>
+                    <td>@(item.TitreLivre)</td>
+                    <td>@(item.ResumeLivre)</td>
+                    <td>@(item.DatePublicationLivre)</td>
+                    <td><a asp-controller="Livre" asp-action="Supprimer" asp-route-id="@(item.IdCategorie)">Supprimer</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@{
+    if (ViewData.ContainsKey("ValidateMessage"))
+    {
+        <p>@ViewData["ValidateMessage"]</p>
+    }
+}
+
+
+
+

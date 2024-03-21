@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using ProjetExemple.Models;
+using MagicBook.Models;
 using System.Diagnostics;
 
-namespace ProjetExemple.Controllers
+namespace MagicBook.Controllers
 {
     public class HomeController : Controller
     {

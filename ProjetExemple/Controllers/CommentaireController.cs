@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MagicBook.Models;
 
-namespace ProjetExemple.Controllers
+namespace MagicBook.Controllers
 {
     public class CommentaireController : Controller
     {

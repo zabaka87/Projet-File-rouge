@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProjetExemple.Models
+namespace MagicBook.Models
 {
     public class Utilisateur
     {

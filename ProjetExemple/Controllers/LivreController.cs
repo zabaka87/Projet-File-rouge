@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using ProjetExemple.Models;
+using MagicBook.Models;
 using System.Diagnostics;
 using Dapper;
+using MagicBook.Models;
 
-namespace ProjetExemple.Controllers
+namespace MagicBook.Controllers
 {
     public class LivreController : Controller
     {
@@ -27,5 +28,6 @@ namespace ProjetExemple.Controllers
             }
             return View("index");
         }
+
     }
 }

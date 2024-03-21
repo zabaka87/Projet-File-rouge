@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ProjetExemple.Controllers
+namespace MagicBook.Controllers
 {
     public class ErrorsController : Controller
     {
