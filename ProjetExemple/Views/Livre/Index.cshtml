@@ -23,7 +23,8 @@
                     <td>@(item.TitreLivre)</td>
                     <td>@(item.ResumeLivre)</td>
                     <td>@(item.DatePublicationLivre)</td>
-                    <td><a asp-controller="Livre" asp-action="Supprimer" asp-route-id="@(item.IdCategorie)">Supprimer</a></td>
+                    <td><a asp-controller="Livre" asp-action="Ajouter" asp-route-id="@(item.ISBN)">Ajouter</a></td>
+                    <td><a asp-controller="Livre" asp-action="Supprimer" asp-route-id="@(item.ISBN)">Supprimer</a></td>
                 </tr>
             }
         </tbody>

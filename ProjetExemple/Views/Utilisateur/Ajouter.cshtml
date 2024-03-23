@@ -4,28 +4,42 @@
 }
 <h1>Ajouter un utilisateur</h1>
 <form asp-controller="Utilisateur" asp-action="Ajouter" method="post">
-    <label asp-for="@Model.IdUtilisateur"></label>
-    <input asp-for="@Model.IdUtilisateur">
-    <span asp-validation-for="@Model.IdUtilisateur" class="text-danger"></span>
-    <label asp-for="@Model.NomUtilisateur"></label>
-    <input asp-for="@Model.NomUtilisateur">
-    <span asp-validation-for="@Model.NomUtilisateur" class="text-danger"></span>
-    <label asp-for="@Model.PrenomUtilisateur"></label>
-    <input asp-for="@Model.PrenomUtilisateur">
-    <span asp-validation-for="@Model.PrenomUtilisateur" class="text-danger"></span>
-    <label asp-for="@Model.EmailUtilisateur"></label>
-    <input asp-for="@Model.EmailUtilisateur">
-    <span asp-validation-for="@Model.EmailUtilisateur" class="text-danger"></span>
-    <label asp-for="@Model.Adresse1"></label>
-    <input asp-for="@Model.Adresse1">
-    <span asp-validation-for="@Model.Adresse1" class="text-danger"></span>
-    <label asp-for="@Model.Ville"></label>
-    <input asp-for="@Model.Ville">
-    <span asp-validation-for="@Model.Ville" class="text-danger"></span>
-    <label asp-for="@Model.CodePostal"></label>
-    <input asp-for="@Model.CodePostal">
-    <span asp-validation-for="@Model.CodePostal" class="text-danger"></span>
-    <input type="submit">
+    <div class="div-input">
+        <label asp-for="@Model.IdUtilisateur"></label>
+        <input asp-for="@Model.IdUtilisateur">
+        <span asp-validation-for="@Model.IdUtilisateur" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.NomUtilisateur"></label>
+        <input asp-for="@Model.NomUtilisateur">
+        <span asp-validation-for="@Model.NomUtilisateur" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.PrenomUtilisateur"></label>
+        <input asp-for="@Model.PrenomUtilisateur">
+        <span asp-validation-for="@Model.PrenomUtilisateur" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.EmailUtilisateur"></label>
+        <input asp-for="@Model.EmailUtilisateur">
+        <span asp-validation-for="@Model.EmailUtilisateur" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.Adresse1"></label>
+        <input asp-for="@Model.Adresse1">
+        <span asp-validation-for="@Model.Adresse1" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.Ville"></label>
+        <input asp-for="@Model.Ville">
+        <span asp-validation-for="@Model.Ville" class="text-danger"></span>
+    </div>
+    <div class="div-input">
+        <label asp-for="@Model.CodePostal"></label>
+        <input asp-for="@Model.CodePostal">
+        <span asp-validation-for="@Model.CodePostal" class="text-danger"></span>
+    </div>
+    <input type="submit" class="button">
 </form>
 @{
     if (ViewData.ContainsKey("ValidateMessage"))

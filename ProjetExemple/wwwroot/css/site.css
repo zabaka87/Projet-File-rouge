@@ -109,23 +109,15 @@ input {
 .container {
     margin-top: 50px;
     border: 3px solid rgb(164, 95, 31);
+    ;
     width: 700px;
     padding: 24px;
     border-radius: 30px;
 }
 
-.container1 {
-    text-align: center;
-    background-color: #7A90A4;
-    padding: 20px;
-    border-radius: 10px;
-}
+
 
 h1 {
     top: 10px;
     margin: 40px;
-}
-
-div {
-    position: relative;
 }
