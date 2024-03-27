@@ -1,40 +1,38 @@
-﻿@model Livre
+﻿
+
+@model AjoutLivreViewModel
 @{
-    ViewData["Title"] = "Ajout livre";
+    ViewData["Title"] = "Ajouter livre";
 }
 <div class="container">
     <h1>Ajouter un Livre</h1>
-    <form asp-controller="Livre" asp-action="Ajouter" method="post">
+    <form id="loginForm"  class="ajoutlivre" asp-controller="Livre" asp-action="Ajouter" enctype="multipart/form-data" asp-antiforgery="true">
         <div class="div-input">
-            <label asp-for="@Model.ISBN"></label>
-            <input asp-for="@Model.ISBN" />
-            <span asp-validation-for="@Model.ISBN" class="text-danger"></span>
+            <label asp-for="@Model.livre.ISBN"></label>
+            <input asp-for="@Model.livre.ISBN" placeholder="ISBN" />
         </div>
         <div class="div-input">
-            <label asp-for="@Model.TitreLivre"></label>
-            <input asp-for="@Model.TitreLivre" />
-            <span asp-validation-for="@Model.TitreLivre" class="text-danger"></span>
+            <label asp-for="@Model.livre.TitreLivre"></label>
+            <input asp-for="@Model.livre.TitreLivre" placeholder="Titre livre" />
         </div>
         <div class="div-input">
-            <label asp-for="@Model.ResumeLivre"></label>
-            <input asp-for="@Model.ResumeLivre">
-            <span asp-validation-for="@Model.ResumeLivre" class="text-danger"></span>
+            <label asp-for="@Model.livre.ResumeLivre"></label>
+            <input asp-for="@Model.livre.ResumeLivre" placeholder="Resumer">
         </div>
         <div class="div-input">
-            <label asp-for="@Model.DatePublicationLivre"></label>
-            <input asp-for="@Model.DatePublicationLivre">
-            <span asp-validation-for="@Model.DatePublicationLivre" class="text-danger"></span>
+            <label asp-for="@Model.livre.DatePublicationLivre"></label>
+            <input asp-for="@Model.livre.DatePublicationLivre" type="date">
         </div>
         <div class="div-input">
-            <label asp-for="@Model.IdEditeur"></label>
-            <input asp-for="@Model.IdEditeur">
-            <span asp-validation-for="@Model.IdEditeur" class="text-danger"></span>
+            <label asp-for="@Model.livre.IdEditeur"></label>
+            <select asp-for="@Model.livre.IdEditeur" asp-items="@Model.editeurs"></select>
         </div>
         <div class="div-input">
-            <label asp-for="@Model.IdCategorie"></label>
-            <input asp-for="@Model.IdCategorie">
-            <span asp-validation-for="@Model.IdCategorie" class="text-danger"></span>
+            <label asp-for="@Model.livre.IdCategorie"></label>
+            <select asp-for="@Model.livre.IdCategorie" asp-items="@Model.categories"></select>
         </div>
+        <label asp-for="@Model.livre.image"></label>
+        <input type="file" asp-for="@Model.livre.image" accept=".jpeg,.jpg,.png" />
         <input type="submit" class="button">
     </form>
 </div>

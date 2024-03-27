@@ -19,10 +19,17 @@
         <input asp-for="@Model.PrenomUtilisateur">
         <span asp-validation-for="@Model.PrenomUtilisateur" class="text-danger"></span>
     </div>
+
     <div class="div-input">
         <label asp-for="@Model.EmailUtilisateur"></label>
         <input asp-for="@Model.EmailUtilisateur">
         <span asp-validation-for="@Model.EmailUtilisateur" class="text-danger"></span>
+    </div>
+
+    <div class="div-input">
+        <label asp-for="@Model.Password"></label>
+        <input asp-for="@Model.Password">
+        <span asp-validation-for="@Model.Password" class="text-danger"></span>
     </div>
     <div class="div-input">
         <label asp-for="@Model.Adresse1"></label>
@@ -39,7 +46,7 @@
         <input asp-for="@Model.CodePostal">
         <span asp-validation-for="@Model.CodePostal" class="text-danger"></span>
     </div>
-    <input type="submit" class="button">
+    <input type="S'inscrire'" class="button">
 </form>
 @{
     if (ViewData.ContainsKey("ValidateMessage"))

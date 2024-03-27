@@ -1,0 +1,20 @@
+﻿@model LivreViewModel 
+@{
+    ViewData["Title"] = "Détail " + Model.TitreLivre;
+}
+<h1>@Model.TitreLivre</h1>
+<div class="div-input">
+    <div class="detaillivre">
+        <div>Référence Livre</div>
+        <div>@Model.ISBN</div>
+        <div>Titre</div>
+        <div>@Model.TitreLivre</div>
+        <div>Date Publication</div>
+        <div>@Model.DatePublicationLivre</div>
+        <div>Nom Editeur </div>
+        <div>@Model.NomEditeur</div>
+        <div>Categorie</div>
+        <div>@Model.NomCategorie</div>
+    </div>
+    <div class="imagelivre"><img src="@Model.Image" alt="image livre"></div>
+</div>
