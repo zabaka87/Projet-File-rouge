@@ -1,4 +1,6 @@
-﻿<div class="container">
+﻿@model Utilisateur
+
+<div class="container">
     <h2>Connexion</h2>
     <form id="loginForm">
         <div class="div-input">
@@ -20,7 +22,7 @@
             </div>
 
         </div>
-        <button class="button_connexion" type="submit">Connexion</button>
+        <button class="button" type="submit">Connexion</button>
 
         <label asp-for="KeepLoggedIn"></label>
         <input type="checkbox" placeholder="Keep me logged in" asp-for="KeepLoggedIn">
@@ -29,11 +31,11 @@
         {
             <input type="hidden" name="ReturnURL" value="@Context.Request.Query["ReturnURL"]">
         }
-        <input type="submit" value="Log in">
+        <input type="submit" value="Log in" class="button">
         @if (ViewData.ContainsKey("ValidateMessage"))
         {
             <p>@ViewData["ValidateMessage"]</p>
         }
     </form>
-    <p>Pas de compte ? <a asp-controller="Utilisateur" asp-action="Inscription" id="inscription">Inscrivez-vous ici</a></p>
+    <p>Pas de compte ? <a asp-controller="Access" asp-action="Inscription" id="inscription">Inscrivez-vous ici</a></p>
 </div>

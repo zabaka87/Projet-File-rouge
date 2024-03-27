@@ -35,7 +35,7 @@ namespace MagicBook.Controllers
             {
                 List<Utilisateur> utilisateurFromDB = connexion.Query<Utilisateur>(query, new { EmailUtilisateur = utilisateur.EmailUtilisateur }).ToList();
 
-                if (utilisateurFromDB.Count > 0 && BC.Verify(utilisateur, utilisateurFromDB[0].Password.ToString()))
+                if (utilisateurFromDB.Count > 0 && BC.Verify(utilisateur.Password, utilisateurFromDB[0].Password.ToString()))
                 {
                     List<Claim> claims = new List<Claim>()
                     {
@@ -73,23 +73,23 @@ namespace MagicBook.Controllers
         [HttpPost]
         public IActionResult Inscription(Utilisateur utilisateur)
         {
-            string query = "SELECT * FROM PLAYER WHERE Email = @Email";
+            string query = "SELECT * FROM Utilisateur WHERE EmailUtilisateur = @EmailUtilisateur";
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                List<Utilisateur> playerFromDB = connexion.Query<Utilisateur>(query, new { Email = utilisateur.EmailUtilisateur }).ToList();
+                List<Utilisateur> utilisateurFromDB = connexion.Query<Utilisateur>(query, new { EmailUtilisateur = utilisateur.EmailUtilisateur }).ToList();
 
-                if (playerFromDB.Count > 0)
+                if (utilisateurFromDB.Count > 0)
                 {
                     ViewData["ValidateMessage"] = "email already used";
                     return View();
                 }
                 else
                 {
-                    string insertQuery = "INSERT INTO PLAYER (Nom,Email,Password) VALUES (@Nom,@Email,@Password)";
+                    string insertQuery = "INSERT INTO Utilisateur (NomUtilisateur,EmailUtilisateur,Password) VALUES ('toto',@EmailUtilisateur,@Password)";
 
                     string HashedPassword = BC.HashPassword(utilisateur.Password);
 
-                    int RowsAffected = connexion.Execute(insertQuery, new { Nom = utilisateur.NomUtilisateur, Email = utilisateur.EmailUtilisateur, Password = HashedPassword });
+                    int RowsAffected = connexion.Execute(insertQuery, new { EmailUtilisateur = utilisateur.EmailUtilisateur, Password = HashedPassword });
                     if (RowsAffected == 1)
                     {
                         ViewData["ValidateMessage"] = "Your subscribtion is done. Please log in with your credentials.";

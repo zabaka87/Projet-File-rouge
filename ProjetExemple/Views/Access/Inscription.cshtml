@@ -1,7 +1,9 @@
-﻿<div class="container">
-    <form id="loginForm">
+﻿@model Utilisateur
 
-        <div class="div-input">
+<div class="container">
+    <form id="loginForm" asp-controller="Access" asp-action="Inscription" method="post">
+
+        @* <div class="div-input">
 
             <div>
 
@@ -63,25 +65,41 @@
 
             </div>
 
+        </div> *@
+
+        <div class="div-input">
+
+            <div>
+
+                <label asp-for="@Model.EmailUtilisateur">Email:</label>
+
+            </div>
+
+            <div>
+
+                <input asp-for="@Model.EmailUtilisateur">
+
+            </div>
+
         </div>
 
         <div class="div-input">
 
             <div>
 
-                <label for="email">Email:</label>
+                <label asp-for="@Model.Password">Mot de passe:</label>
 
             </div>
 
             <div>
 
-                <input type="email" id="email" name="email" required>
+                <input asp-for="@Model.Password">
 
             </div>
 
         </div>
 
-        <div class="div-input">
+        @* <div class="div-input">
 
             <div>
 
@@ -95,23 +113,7 @@
 
             </div>
 
-        </div>
-
-        <div class="div-input">
-
-            <div>
-
-                <label for="password">Mot de passe:</label>
-
-            </div>
-
-            <div>
-
-                <input type="password" id="password" name="password" required>
-
-            </div>
-
-        </div>
+        </div> *@
 
         <button type="submit" class="button">S'inscrire</button>
 
@@ -119,6 +121,6 @@
 
     </form>
 
-    <script src="script.js"></script>
+     <script src="script.js"></script>
 
 </div>
