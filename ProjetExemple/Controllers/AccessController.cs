@@ -57,7 +57,7 @@ namespace MagicBook.Controllers
                     {
                         return Redirect(Request.Form["ReturnURL"]!);
                     }
-                    return RedirectToAction("Index", "Personnage");
+                    return RedirectToAction("Index", "Utilisateur");
                 }
             }
             Response.StatusCode = 403;
@@ -85,20 +85,20 @@ namespace MagicBook.Controllers
                 }
                 else
                 {
-                    string insertQuery = "INSERT INTO Utilisateur (NomUtilisateur,EmailUtilisateur,Password) VALUES ('toto',@EmailUtilisateur,@Password)";
+                    string insertQuery = "INSERT INTO Utilisateur (NomUtilisateur,PrenomUtilisateur,PseudoUtilisateur,EmailUtilisateur,Adresse1,Adresse2,CodePostal,Ville,DateInscription,Password) VALUES (@NomUtilisateur,@PrenomUtilisateur,@PseudoUtilisateur,@EmailUtilisateur,@Adresse1,@Adresse2,@CodePostal,@Ville,NOW(),@Password)";
 
                     string HashedPassword = BC.HashPassword(utilisateur.Password);
 
-                    int RowsAffected = connexion.Execute(insertQuery, new { EmailUtilisateur = utilisateur.EmailUtilisateur, Password = HashedPassword });
+                    int RowsAffected = connexion.Execute(insertQuery, new { NomUtilisateur=utilisateur.NomUtilisateur, PrenomUtilisateur=utilisateur.PrenomUtilisateur, PseudoUtilisateur=utilisateur.PseudoUtilisateur, EmailUtilisateur = utilisateur.EmailUtilisateur, Adresse1=utilisateur.Adresse1, Adresse2=utilisateur.Adresse2, CodePostal=utilisateur.CodePostal,Ville=utilisateur.Ville, DateInscription=utilisateur.DateInscription, Password = HashedPassword });
                     if (RowsAffected == 1)
                     {
-                        ViewData["ValidateMessage"] = "Your subscribtion is done. Please log in with your credentials.";
+                        ViewData["ValidateMessage"] = "Votre compte a été cree avec succe , veuiller s'identifier.";
                         return View("Login");
 
                     }
                     else
                     {
-                        ViewData["ValidateMessage"] = "Error during the signin process, please try again.";
+                        ViewData["ValidateMessage"] = "Un erreur a été détécter durant votre inscription,veuiller resseyer.";
                         return View();
                     }
                 }

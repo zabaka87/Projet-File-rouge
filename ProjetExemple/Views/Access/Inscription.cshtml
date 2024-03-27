@@ -3,17 +3,30 @@
 <div class="container">
     <form id="loginForm" asp-controller="Access" asp-action="Inscription" method="post">
 
-        @* <div class="div-input">
+        <div class="div-input">
 
             <div>
 
-                <label for="firstname">Prenom:</label>
+                <label asp-for="@Model.NomUtilisateur">Nom:</label>
+            </div>
+
+            <div>
+
+                <input asp-for="@Model.NomUtilisateur">
+            </div>
+        </div>
+
+        <div class="div-input">
+
+            <div>
+
+                <label asp-for="@Model.PrenomUtilisateur">Prenom:</label>
 
             </div>
 
             <div>
 
-                <input type="text" id="firstname" name="firstname" required>
+                <input asp-for="@Model.PrenomUtilisateur">
 
             </div>
 
@@ -23,13 +36,13 @@
 
             <div>
 
-                <label for="city">Ville:</label>
+                <label asp-for="@Model.PseudoUtilisateur">Pseudo:</label>
 
             </div>
 
             <div>
 
-                <input type="text" id="city" name="city" required>
+                <input asp-for="@Model.PseudoUtilisateur">
 
             </div>
 
@@ -39,13 +52,13 @@
 
             <div>
 
-                <label for="postalcode">Code Postal:</label>
+                <label asp-for="@Model.Ville">Ville:</label>
 
             </div>
 
             <div>
 
-                <input type="text" id="postalcode" name="postalcode" required>
+                <input asp-for="@Model.Ville">
 
             </div>
 
@@ -55,17 +68,18 @@
 
             <div>
 
-                <label for="username">Nom d'utilisateur:</label>
+                <label asp-for="@Model.CodePostal">Code Postal:</label>
 
             </div>
 
             <div>
 
-                <input type="text" id="username" name="username" required>
+                <input asp-for="@Model.CodePostal">
 
             </div>
 
-        </div> *@
+        </div>
+
 
         <div class="div-input">
 
@@ -84,6 +98,24 @@
         </div>
 
         <div class="div-input">
+            <div>
+                <label asp-for="@Model.Adresse1"> Adresse 1:</label>
+            </div>
+            <div>
+                <input asp-for="@Model.Adresse1">
+            </div>
+        </div>
+
+        <div class="div-input">
+            <div>
+                <label asp-for="@Model.Adresse2"> Adresse 2:</label>
+            </div>
+            <div>
+                <input asp-for="@Model.Adresse2">
+            </div>
+        </div>
+
+        <div class="div-input">
 
             <div>
 
@@ -99,21 +131,6 @@
 
         </div>
 
-        @* <div class="div-input">
-
-            <div>
-
-                <label for="password">Mot de passe:</label>
-
-            </div>
-
-            <div>
-
-                <input type="password" id="password" name="password" required>
-
-            </div>
-
-        </div> *@
 
         <button type="submit" class="button">S'inscrire</button>
 
@@ -121,6 +138,6 @@
 
     </form>
 
-     <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </div>
