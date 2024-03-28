@@ -32,8 +32,8 @@
             <select asp-for="@Model.livre.IdCategorie" asp-items="@Model.categories"></select>
         </div>
         <label asp-for="@Model.livre.image"></label>
-        <input type="file" asp-for="@Model.livre.image" accept=".jpeg,.jpg,.png" />
-        <input type="submit" class="button">
+        <input type="file" asp-for="@Model.livre.image" accept=".jpeg,.jpg,.png">
+        <button type="submit" class="button">Ajouter</button>
     </form>
 </div>
 

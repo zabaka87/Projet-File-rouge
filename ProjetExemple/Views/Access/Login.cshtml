@@ -12,6 +12,19 @@
             </div>
 
         </div>
+
+        <div class="div-input">
+            <div>
+                <label for="Email">EmailUtilisateur:</label>
+            </div>
+            <div>
+                <input type="text" id="Email" name="Email" required>
+
+            </div>
+
+        </div>
+
+
         <div class="div-input">
             <div>
                 <label for="password">Mot de passe:</label>
@@ -31,7 +44,7 @@
         {
             <input type="hidden" name="ReturnURL" value="@Context.Request.Query["ReturnURL"]">
         }
-        <input type="submit" value="Log in" class="button">
+        
         @if (ViewData.ContainsKey("ValidateMessage"))
         {
             <p>@ViewData["ValidateMessage"]</p>

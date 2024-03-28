@@ -71,7 +71,7 @@ namespace MagicBook.Controllers
             //TODO: vérification de l'existance du codeRace donné par l'utilisateur dans la bdd
 
             //requête SQL permettant d'ajouter un personnage à la base de données
-            string InsertQuery = "INSERT INTO Livre(ISBN,TitreLivre,ResumeLivre,DatePublicationLivre,CouvertureLivre,IdEditeur,IdCategorie,image) VALUES (@ISBN,@TitreLivre,@ResumeLivre,@DatePublicationLivre,@CouvertureLivre,@IdEditeur,@IdCategorie,@image)";
+            string InsertQuery = "INSERT INTO Livre(ISBN,TitreLivre,ResumeLivre,DatePublicationLivre,IdEditeur,IdCategorie,image) VALUES (@ISBN,@TitreLivre,@ResumeLivre,@DatePublicationLivre,@IdEditeur,@IdCategorie,@image)";
 
            
             string? filePath = null;
@@ -135,8 +135,8 @@ namespace MagicBook.Controllers
             AjoutLivreViewModel viewModel = new AjoutLivreViewModel();
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                List<Categorie> categories = connexion.Query<Categorie>(selectCategorieQuery).ToList();
-                foreach (Categorie categorie in categories)
+                List<genres> categories = connexion.Query<genres>(selectCategorieQuery).ToList();
+                foreach (genres categorie in categories)
                 {
                     viewModel.categories.Add(new SelectListItem { Text = categorie.NomCategorie, Value = categorie.IdCategorie.ToString() });
                 }
@@ -149,6 +149,7 @@ namespace MagicBook.Controllers
             }
             return viewModel;
         }
+
 
     }
 }

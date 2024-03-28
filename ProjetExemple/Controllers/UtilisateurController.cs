@@ -41,11 +41,7 @@ namespace MagicBook.Controllers
             return View();
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-
+       
         public IActionResult Inscription()
         {
             return View();

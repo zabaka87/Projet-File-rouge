@@ -14,11 +14,11 @@ namespace MagicBook.Controllers
         }
         public IActionResult GetCategorie(string message = "")
         {
-            List<Categorie> categories = new List<Categorie>();
+            List<genres> categories = new List<genres>();
             string query = "SELECT * FROM Categorie";
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                 categories = connexion.Query<Categorie>(query).ToList();
+                 categories = connexion.Query<genres>(query).ToList();
                 ViewData["Categories"] = categories;
             }
             if (message.Length > 0)

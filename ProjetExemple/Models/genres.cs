@@ -2,7 +2,7 @@
 
 namespace MagicBook.Models
 {
-    public class Categorie
+    public class genres
     {
         [Display(Name = "IdCategorie")]
         public int IdCategorie { get; set; }

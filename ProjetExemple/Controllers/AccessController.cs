@@ -30,38 +30,41 @@ namespace MagicBook.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Utilisateur utilisateur)
         {
-            string query = "SELECT EmailUtilisateur, Password FROM Utilisateur WHERE EmailUtilisateur = @EmailUtilisateur";
+            string query = "SELECT NomUtilisateur, EmailUtilisateur, Password FROM Utilisateur WHERE EmailUtilisateur = @EmailUtilisateur";
+
             using (var connexion = new MySqlConnection(_connexionString))
             {
-                List<Utilisateur> utilisateurFromDB = connexion.Query<Utilisateur>(query, new { EmailUtilisateur = utilisateur.EmailUtilisateur }).ToList();
+                var utilisateurFromDB = await connexion.QueryFirstOrDefaultAsync<Utilisateur>(query, new { EmailUtilisateur = utilisateur.EmailUtilisateur });
 
-                if (utilisateurFromDB.Count > 0 && BC.Verify(utilisateur.Password, utilisateurFromDB[0].Password.ToString()))
+                if (utilisateurFromDB != null && BC.Verify(utilisateur.Password, utilisateurFromDB.Password))
                 {
-                    List<Claim> claims = new List<Claim>()
-                    {
-                        new Claim(ClaimTypes.NameIdentifier, utilisateur.EmailUtilisateur),
-                        new Claim(ClaimTypes.Name, utilisateurFromDB[0].NomUtilisateur),
-                    };
+                    var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.NameIdentifier, utilisateurFromDB.EmailUtilisateur),
+                new Claim(ClaimTypes.Name, utilisateurFromDB.NomUtilisateur)
+            };
 
-                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    AuthenticationProperties properties = new AuthenticationProperties()
+                    var authProperties = new AuthenticationProperties
                     {
                         AllowRefresh = true,
-                        IsPersistent = utilisateur.KeepLoggedIn,
+                        IsPersistent = utilisateur.KeepLoggedIn
                     };
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
                     if (Request.Form.ContainsKey("ReturnURL"))
                     {
-                        return Redirect(Request.Form["ReturnURL"]!);
+                        return Redirect(Request.Form["ReturnURL"]);
                     }
+
                     return RedirectToAction("Index", "Utilisateur");
                 }
             }
+
             Response.StatusCode = 403;
-            ViewData["ValidateMessage"] = "Wrong email or password.";
+            ViewData["ValidateMessage"] = "Adresse e-mail ou mot de passe incorrect.";
             return View();
         }
 
@@ -89,7 +92,7 @@ namespace MagicBook.Controllers
 
                     string HashedPassword = BC.HashPassword(utilisateur.Password);
 
-                    int RowsAffected = connexion.Execute(insertQuery, new { NomUtilisateur=utilisateur.NomUtilisateur, PrenomUtilisateur=utilisateur.PrenomUtilisateur, PseudoUtilisateur=utilisateur.PseudoUtilisateur, EmailUtilisateur = utilisateur.EmailUtilisateur, Adresse1=utilisateur.Adresse1, Adresse2=utilisateur.Adresse2, CodePostal=utilisateur.CodePostal,Ville=utilisateur.Ville, DateInscription=utilisateur.DateInscription, Password = HashedPassword });
+                    int RowsAffected = connexion.Execute(insertQuery, new { NomUtilisateur = utilisateur.NomUtilisateur, PrenomUtilisateur = utilisateur.PrenomUtilisateur, PseudoUtilisateur = utilisateur.PseudoUtilisateur, EmailUtilisateur = utilisateur.EmailUtilisateur, Adresse1 = utilisateur.Adresse1, Adresse2 = utilisateur.Adresse2, CodePostal = utilisateur.CodePostal, Ville = utilisateur.Ville, DateInscription = utilisateur.DateInscription, Password = HashedPassword });
                     if (RowsAffected == 1)
                     {
                         ViewData["ValidateMessage"] = "Votre compte a été cree avec succe , veuiller s'identifier.";
