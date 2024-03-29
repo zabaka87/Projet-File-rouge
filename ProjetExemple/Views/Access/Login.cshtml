@@ -2,13 +2,13 @@
 
 <div class="container">
     <h2>Connexion</h2>
-    <form id="loginForm">
+    <form id="loginForm" asp-controller="access" asp-action="Login" method="post">
         <div class="div-input">
             <div>
                 <label for="username">Nom d'utilisateur:</label>
             </div>
             <div>
-                <input type="text" id="username" name="username" required>
+                <input  asp-for="@Model.NomUtilisateur">
             </div>
 
         </div>
@@ -18,7 +18,7 @@
                 <label for="Email">EmailUtilisateur:</label>
             </div>
             <div>
-                <input type="text" id="Email" name="Email" required>
+                <input asp-for="@Model.EmailUtilisateur">
 
             </div>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div>
-                <input type="password" id="password" name="password" required>
+                <input asp-for="@Model.Password">
             </div>
 
         </div>

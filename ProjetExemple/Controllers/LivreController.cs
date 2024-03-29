@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace MagicBook.Controllers
 {
-
+    [Authorize]
     public class LivreController : Controller
     {
 

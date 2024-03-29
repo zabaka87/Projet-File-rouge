@@ -120,3 +120,56 @@ h1 {
     top: 10px;
     margin: 40px;
 }
+.Project-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #344D59;
+}
+.grid-container
+{
+    position:relative;
+    width:1200px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-gap:20px;
+    padding:20px;
+
+}
+.project-card {
+    width: 100%;
+    background: #344D59;
+}
+.img-grid {
+    position: relative;
+    width: 100%;
+    height:400px;
+
+}
+.img-style
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s ease-in-out;
+    transform-origin:center
+}
+.project-card:hover .img-style 
+{
+    transform:scale(1.5);
+}
+.project-content
+{
+    padding:10px;
+
+}
+.titre-livre {
+    font-size: 18px;
+    font-weight: 600;
+    color: #eef1f3;
+    margin:5px 0;
+}

@@ -39,10 +39,10 @@ namespace MagicBook.Controllers
                 if (utilisateurFromDB != null && BC.Verify(utilisateur.Password, utilisateurFromDB.Password))
                 {
                     var claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier, utilisateurFromDB.EmailUtilisateur),
-                new Claim(ClaimTypes.Name, utilisateurFromDB.NomUtilisateur)
-            };
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, utilisateurFromDB.EmailUtilisateur),
+                        new Claim(ClaimTypes.Name, utilisateurFromDB.NomUtilisateur)
+                    };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
