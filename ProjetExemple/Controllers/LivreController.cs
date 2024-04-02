@@ -22,9 +22,10 @@ namespace MagicBook.Controllers
             _connexionString = configuration.GetConnectionString("MagicBook")!;
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Detail(string id)
         {
-            string query = "Select * from Livre join Editeur on Livre.IdEditeur=Editeur.IdEditeur where ISBN =@id";
+            string query = "Select * from Livre join Editeur on Livre.IdEditeur=Editeur.IdEditeur join Categorie on Livre.IdCategorie=Categorie.IdCategorie where ISBN =@id";
+
             using (var connexion = new MySqlConnection(_connexionString))
             {
                 try

@@ -11,7 +11,7 @@ namespace MagicBook.Models
         [Display(Name = "Resumer")]
         public string? ResumeLivre { get; set; }
         [Display(Name = "Date Publication")]
-        public DateOnly? DatePublicationLivre { get; set; }
+        public DateTime? DatePublicationLivre { get; set; }
         [Display(Name = "Nom Editeur")]
         public required string NomEditeur { get; set; }
         [Display(Name = "Genre")]
