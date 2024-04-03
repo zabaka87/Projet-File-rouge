@@ -10,26 +10,32 @@
         <div class="div-input">
             <label asp-for="@Model.livre.ISBN"></label>
             <input asp-for="@Model.livre.ISBN" placeholder="ISBN" />
+            <span asp-validation-for="@Model.livre.ISBN" class="text-danger"></span>
         </div>
         <div class="div-input">
             <label asp-for="@Model.livre.TitreLivre"></label>
             <input asp-for="@Model.livre.TitreLivre" placeholder="Titre livre" />
+            <span asp-validation-for="@Model.livre.TitreLivre" class="text-danger"></span>
         </div>
         <div class="div-input">
             <label asp-for="@Model.livre.ResumeLivre"></label>
             <input asp-for="@Model.livre.ResumeLivre" placeholder="Resumer">
+            <span asp-validation-for="@Model.livre.ResumeLivre" class="text-danger"></span>
         </div>
         <div class="div-input">
             <label asp-for="@Model.livre.DatePublicationLivre"></label>
             <input asp-for="@Model.livre.DatePublicationLivre" type="date">
+            <span asp-validation-for="@Model.livre.DatePublicationLivre" class="text-danger"></span>
         </div>
         <div class="div-input">
             <label asp-for="@Model.livre.IdEditeur"></label>
             <select asp-for="@Model.livre.IdEditeur" asp-items="@Model.editeurs"></select>
+            <span asp-validation-for="@Model.livre.IdEditeur" class="text-danger"></span>
         </div>
         <div class="div-input">
             <label asp-for="@Model.livre.IdCategorie"></label>
             <select asp-for="@Model.livre.IdCategorie" asp-items="@Model.categories"></select>
+            <span asp-validation-for="@Model.livre.IdCategorie" class="text-danger"></span>
         </div>
         <label asp-for="@Model.livre.image"></label>
         <input type="file" asp-for="@Model.livre.image" accept=".jpeg,.jpg,.png">

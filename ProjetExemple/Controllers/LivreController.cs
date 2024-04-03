@@ -47,17 +47,13 @@ namespace MagicBook.Controllers
         }
 
         
-        /// <summary>
-        /// Méthode gérant la soumission du formulaire de création d'un personnage
-        /// </summary>
-        /// <param name = "personnage" > Personnage que l'utilisateur souhaite créer</param>
-        /// <returns>Vue permettant de créer un personnage et affichant si la création a fonctionné ou non</returns>
+       
         [HttpPost]
         public IActionResult Ajouter(Livre livre)
         {
-            ////TODO: validation du modèle
+            //validation du modèle
 
-            ////TODO : vérification de la non-utilisation de la clé primaire
+            // vérification de la non-utilisation de la clé primaire
             string ClePremaireQuery = "SELECT COUNT(*) FROM Livre WHERE ISBN=@ISBN";
             using (var connexion = new MySqlConnection(_connexionString))
             {
@@ -69,9 +65,9 @@ namespace MagicBook.Controllers
                 }
             }
 
-            //TODO: vérification de l'existance du codeRace donné par l'utilisateur dans la bdd
+            //vérification de l'existance du codeRace donné par l'utilisateur dans la bdd
 
-            //requête SQL permettant d'ajouter un personnage à la base de données
+            //requête SQL permettant d'ajouter un Livre à la base de données
             string InsertQuery = "INSERT INTO Livre(ISBN,TitreLivre,ResumeLivre,DatePublicationLivre,IdEditeur,IdCategorie,image) VALUES (@ISBN,@TitreLivre,@ResumeLivre,@DatePublicationLivre,@IdEditeur,@IdCategorie,@image)";
 
            
@@ -105,7 +101,7 @@ namespace MagicBook.Controllers
                     }
                     else
                     {
-                        ViewData["ValidateMessage"] = "Personnage created !";
+                        ViewData["ValidateMessage"] = "Book created !";
                     }
                 }
                 catch (MySqlException)
@@ -123,11 +119,6 @@ namespace MagicBook.Controllers
 
         }
 
-        /// <summary>
-        /// Méthode générant une instance de AjoutPersonnageViewModel et le rempli des races parmi lesquelles l'utilisateur pourra choisir celle qu'il souhaite affecter à un personnage
-        /// Cette méthode est utilisée par ce contrôleur quand il renvoit les vues de création et de mise à jour de personnage
-        /// </summary>
-        /// <returns>Instance de AjoutPersonnageViewModel</returns>
         private AjoutLivreViewModel GenerateAjoutLivreViewModel()
         {
             // récupération de toutes les races
@@ -151,6 +142,80 @@ namespace MagicBook.Controllers
             return viewModel;
         }
 
+        [HttpGet]
+        public IActionResult Commentaire()
+        {
+            return View(GenerateAjoutLivreViewModel());
+        }
+        [HttpPost]
+        public IActionResult Commentaire(Livre livre)
+        {
+            //validation du modèle
 
+            // vérification de la non-utilisation de la clé primaire
+            string ClePremaireQuery = "SELECT COUNT(*) FROM Commentaire WHERE IdCommentaire=@IdCommentaire";
+            using (var connexion = new MySqlConnection(_connexionString))
+            {
+                int res = connexion.ExecuteScalar<int>(ClePremaireQuery, new { ISBN = livre.ISBN });
+                if (res > 0)
+                {
+                    ViewData["ValidateMessage"] = "Ce numéro ISBN est déjà utilisé, veuillez en choisir un autre.";
+                    return View(GenerateAjoutLivreViewModel());
+                }
+            }
+
+            //vérification de l'existance du commentaire donné par l'utilisateur dans la bdd
+
+            //requête SQL permettant d'ajouter un commentaire à la base de données
+            string InsertQuery = "INSERT INTO Commentaire(IdCommentaire,Commentaire,DateCommentaire,IdUtilisateur,ISBN) VALUES (@IdCommentaire,@Commentaire,@DateCommentaire,@IdUtilisateur,@ISBN)";
+
+
+            string? filePath = null;
+            if (Request.Form.Files.Count == 1 && Request.Form.Files[0].Length > 0)
+            {
+                filePath = Path.Combine("/images/livre/",
+                    Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.GetExtension(Request.Form.Files[0].FileName)).ToString();
+
+                using (var stream = System.IO.File.Create("wwwroot" + filePath))
+                {
+                    Request.Form.Files[0].CopyTo(stream);
+                }
+                livre.image = filePath;
+            }
+
+
+            using (var connexion = new MySqlConnection(_connexionString))
+            {
+                try
+                {
+                    int rowsCreated = connexion.Execute(InsertQuery, livre);
+                    if (rowsCreated == 0)
+                    {
+
+                        if (filePath != null)
+                        {
+                            System.IO.File.Delete("wwwroot" + filePath);
+                        }
+                        ViewData["ValidateMessage"] = "There was a problem during the process, please try again";
+                    }
+                    else
+                    {
+                        ViewData["ValidateMessage"] = "Book created !";
+                    }
+                }
+                catch (MySqlException)
+                {
+                    //supprimer l'image si elle a été créé
+                    if (filePath != null)
+                    {
+                        System.IO.File.Delete("wwwroot" + filePath);
+                    }
+                    ViewData["ValidateMessage"] = "There was a problem during the process, please try again";
+                }
+            }
+
+            return View(GenerateAjoutLivreViewModel());
+
+        }
     }
 }

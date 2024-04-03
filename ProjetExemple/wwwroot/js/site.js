@@ -1,21 +1,20 @@
-﻿//document.getElementById('loginForm').addEventListener('submit', function (event) {
-//    event.preventDefault();
-//    let username = document.getElementById('username').value;
-//    let password = document.getElementById('password').value;
-//    if (username === 'utilisateur' && password === 'motdepasse') {
-//        alert('Connexion réussie !');
-//    } else {
-//        alert('Nom d\'utilisateur ou mot de passe incorrect');
-//    }
-//});
-//document.getElementById('signupForm').addEventListener('submit', function (event) {
-//    event.preventDefault();
-//    let username = document.getElementById('username').value;
-//    let email = document.getElementById('email').value;
-//    let password = document.getElementById('password').value;
-//    if (username && email && password) {
-//        alert('Inscription réussie !');
-//    } else {
-//        alert('Veuillez remplir tous les champs');
-//    }
-//});
+﻿document.getElementById('next').onclick = function () {
+    let lists = document.querySelectorAll('.item');
+    document.getElementById('slide').appendChild(lists[0]);
+}
+document.getElementById('prev').onclick = function () {
+    let lists = document.querySelectorAll('.item');
+    document.getElementById('slide').prepend(lists[lists.length - 1]);
+}
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let message = document.getElementById('message').value;
+
+    // Envoi des données à un serveur ou traitement des données
+
+    document.getElementById('response').innerHTML = `<p>Merci ${name}! Votre message a été envoyé avec succès.</p>`;
+    document.getElementById('contact-form').reset();
+});
