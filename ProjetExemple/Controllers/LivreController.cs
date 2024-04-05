@@ -97,7 +97,7 @@ namespace MagicBook.Controllers
                         {
                             System.IO.File.Delete("wwwroot" + filePath);
                         }
-                        ViewData["ValidateMessage"] = "There was a problem during the process, please try again";
+                        ViewData["ValidateMessage"] = "ERREUR DE CHARGEMENT VEUILLIER RESSEYER";
                     }
                     else
                     {
@@ -111,7 +111,7 @@ namespace MagicBook.Controllers
                     {
                         System.IO.File.Delete("wwwroot" + filePath);
                     }
-                    ViewData["ValidateMessage"] = "There was a problem during the process, please try again";
+                    ViewData["ValidateMessage"] = "ERREUR DE CHARGEMENT VEUILLIER RESSEYER";
                 }
             }
 
