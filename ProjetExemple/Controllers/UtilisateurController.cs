@@ -46,5 +46,10 @@ namespace MagicBook.Controllers
         {
             return View();
         }
+        public IActionResult Commentaire()
+        {
+
+            return View();
+        }
     }
 }

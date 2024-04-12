@@ -26,11 +26,17 @@ namespace MagicBook.Controllers
         {
             string query = "Select * from Livre join Editeur on Livre.IdEditeur=Editeur.IdEditeur join Categorie on Livre.IdCategorie=Categorie.IdCategorie where ISBN =@id";
 
+            string QueryCommentaires = "";
+
             using (var connexion = new MySqlConnection(_connexionString))
             {
                 try
                 {
                     LivreViewModel livre = connexion.QuerySingle<LivreViewModel>(query, new { id = id });
+
+                    // todo : rempli la liste de commentaires du livre
+
+
                     return View(livre);
                 }
                 catch (InvalidOperationException)
@@ -65,7 +71,6 @@ namespace MagicBook.Controllers
                 }
             }
 
-            //vérification de l'existance du codeRace donné par l'utilisateur dans la bdd
 
             //requête SQL permettant d'ajouter un Livre à la base de données
             string InsertQuery = "INSERT INTO Livre(ISBN,TitreLivre,ResumeLivre,DatePublicationLivre,IdEditeur,IdCategorie,image) VALUES (@ISBN,@TitreLivre,@ResumeLivre,@DatePublicationLivre,@IdEditeur,@IdCategorie,@image)";
@@ -142,13 +147,9 @@ namespace MagicBook.Controllers
             return viewModel;
         }
 
-        [HttpGet]
-        public IActionResult Commentaire()
-        {
-            return View(GenerateAjoutLivreViewModel());
-        }
+       
         [HttpPost]
-        public IActionResult Commentaire(Livre livre)
+        public IActionResult Commentaire(Commentaire commentaire)
         {
             //validation du modèle
 

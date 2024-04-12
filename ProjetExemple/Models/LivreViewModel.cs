@@ -19,6 +19,8 @@ namespace MagicBook.Models
         [Display(Name = "Image")]
         public string Image { get; set; }
 
+        public List<CommentaireViewModel>  Commentaire { get; set; } = new List<CommentaireViewModel>();
+
      
 
     }
