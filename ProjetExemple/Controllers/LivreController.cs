@@ -46,9 +46,6 @@ namespace MagicBook.Controllers
                         livre.Commentaire = new List<CommentaireViewModel>();
                     }
 
-
-
-
                     // Affichage de la vue avec les détails du livre
                     return View(livre);
                 }
@@ -171,88 +168,13 @@ namespace MagicBook.Controllers
             return viewModel;
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult AjouterCommentaire(Commentaire AjoutCom)
-        //{
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    string queryInsertCommentaire = "INSERT INTO Commentaire (commentaire, DateCommentaire, IdUtilisateur) " +
-        //                                    "VALUES (@Commentaire, NOW(), @IdUtilisateur);";
-
-        //    string queryInsertLien = "INSERT INTO CommentaireLivre (IdCommentaire,ISBN) " +
-        //        "VALUES (LAST_INSERT_ID(),@ISBN);";
-        //    using (var connexion = new MySqlConnection(_connexionString))
-        //    {
-        //        try
-        //        {
-        //            connexion.Open();
-        //            using (var transaction = connexion.BeginTransaction())
-        //            {
-        //                string idUtilis = User.FindFirstValue(ClaimTypes.SerialNumber);
-        //                // Insertion du commentaire
-        //                connexion.Execute(queryInsertCommentaire, new { Commentaire = AjoutCom.commentaire, IdUtilisateur = User.FindFirstValue(ClaimTypes.SerialNumber) }, transaction);
-
-        //                // Récupération de l'ID du commentaire inséré
-        //                var idCommentaire = connexion.ExecuteScalar<int>("SELECT LAST_INSERT_ID();", transaction);
-
-        //                // Insertion du lien entre le commentaire et le livre
-        //                connexion.Execute(queryInsertLien, new { idCommentaire, ISBN = AjoutCom.ISBN }, transaction);
-
-        //                transaction.Commit();
-        //                TempData["ValidateMessage"] = "Le commentaire a été ajouté avec succès.";
-        //            }
-                      
-
-        //        }
-        //        catch (MySqlException)
-        //        {
-        //            TempData["ValidateMessage"] = "Il y a eu un problème lors de l'ajout du commentaire.";
-        //        }
-        //    }
-        //    //}
-        //    //else
-        //    //{
-        //    //    TempData["ValidateMessage"] = "Les données fournies ne sont pas correctes.";
-        //    //}
-
-        //    return RedirectToAction("Detail", new { id = AjoutCom.ISBN });
-        //}
+       
 
 
 
 
 
 
-
-
-
-
-        //// Action pour afficher les détails d'un livre
-        //public IActionResult listCommentaire(string id)
-        //{
-        //    // Requête SQL pour récupérer les détails d'un livre avec l'ISBN spécifié
-        //    string query = "SELECT * FROM Commentaire JOIN CommentaireLivre ON Commentaire.IdCommentaire = CommentaireLivre.IdCommentaire JOIN Livre ON Livre.ISBN = CommentaireLivre.ISBN WHERE Livre.ISBN = @id";
-
-        //    using (var connexion = new MySqlConnection(_connexionString))
-        //    {
-        //        try
-        //        {
-        //            // Exécution de la requête SQL et récupération des détails du livre
-        //            LivreViewModel livre = connexion.QuerySingle<LivreViewModel>(query, new { id = id });
-
-        //            // Todo: Remplir la liste de commentaires du livre
-
-        //            // Affichage de la vue avec les détails du livre
-        //            return View(livre);
-        //        }
-        //        catch (InvalidOperationException)
-        //        {
-        //            // Redirection vers une page d'erreur si le livre n'est pas trouvé
-        //            return RedirectToAction("NotFound", "Errors");
-        //        }
-        //    }
-        //}
     }
 }
 

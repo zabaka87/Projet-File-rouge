@@ -40,10 +40,10 @@
                     @foreach (var commentaire in Model.Commentaire)
                     {
                         <li>
-                            <label> Publié par : </label> <label><strong>@commentaire.PseudoUtilisateur</strong></label> <br />
-                            <label> Date de publication : </label> <label>@commentaire.DateCommentaire.ToShortDateString()</label><br />
-                            <label> @commentaire.Commentaire</label>
-                            
+                            <label> @commentaire.Commentaire</label><br />
+                            <label id="lbl-comm"><u> Publié le  @commentaire.DateCommentaire.ToShortDateString()</u> par : <strong>@commentaire.PseudoUtilisateur</strong></label>
+                           
+
                         </li>
                     }
                 </ul>
@@ -54,26 +54,10 @@
             }
         </div>
         <div>
-            <a id="avis" href="#form_comm">Voulez vous ajouter un commentaire ?</a>
+            <a id="avis" asp-controller="Commentaire" asp-action="Index" asp-route-id="@(Model.ISBN)">Voulez vous ajouter un commentaire ?</a>
         </div>
     </div>
-    <div id="form_comm">
-
-
-
-        <form class="ajoutCommentaire" asp-controller="Livre" asp-action="AjouterCommentaire" method="post">
-                <input type="hidden" asp-for="ISBN" value="@Model.ISBN" />
-                <div id="input-comm">
-                <label asp-for="Commentaire" class="titre_coleur">Ajouter votre commentaire :</label>
-                    <!-- Utilisation de <textarea> au lieu de <input> -->
-                    <textarea asp-for="@Model.Commentaire"></textarea>
-                    <span asp-validation-for="Commentaire" class="text-danger"></span>
-                </div>
-                <button type="submit" class="button">Ajouter</button>
-            </form>
-
-  
-    </div>
+    
 </div>
 
 @{

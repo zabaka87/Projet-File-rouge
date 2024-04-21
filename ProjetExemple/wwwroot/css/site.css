@@ -318,13 +318,12 @@ input {
     justify-content: flex-end;
 }
 #list_comm ul li {
+    padding:10px;
     border: 1px solid #6b5944;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-#form_comm {
-display: none;
-}
+
     
 .ajoutCommentaire{
     width: 100%;
@@ -338,9 +337,15 @@ display: none;
     grid-template-columns: 20% 80%;
     text-align: left;
 }
-
-/**Login**/
-#div-submit {
+#lbl-comm {
+    color: #1d1e1e;
+    font-size: small;
+}
+#lbl-comm strong {
+    color: burlywood;
+}
+    /**Login**/
+    #div-submit {
     display: flex;
     justify-content: space-between;
 }
