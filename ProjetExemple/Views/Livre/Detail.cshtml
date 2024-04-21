@@ -2,22 +2,88 @@
 @{
     ViewData["Title"] = "Détail " + Model.TitreLivre;
 }
-<h1>@Model.TitreLivre</h1>
-<div class="div-input">
-    <div class="detaillivre">
-        <div>Référence Livre</div>
-        <div>@Model.ISBN</div>
-        <div>Titre</div>
-        <div>@Model.TitreLivre</div>
-        <div>Date Publication</div>
-        <div>@Model.DatePublicationLivre</div>
-        <div>Nom Editeur </div>
-        <div>@Model.NomEditeur</div>
-        <div>Categorie</div>
-        <div>@Model.NomCategorie</div>
+<div class="container">
+    <h1>@Model.TitreLivre</h1>
+    <div id="detail_livre">
+        <div class="imagelivre"><img src="@Model.Image" alt="image livre"></div>
+        <div class="detaillivre">
+            <label class="titre_coleur">Référence Livre :</label>
+            <label>@Model.ISBN</label><br />
+            <label class="titre_coleur">Titre :</label>
+            <label>@Model.TitreLivre</label><br />
+            <label class="titre_coleur">Date Publication :</label>
+            <label>@Model.DatePublicationLivre</label><br />
+            <label class="titre_coleur">Nom Editeur :</label>
+            <label>@Model.NomEditeur</label><br />
+            <label class="titre_coleur">Categorie :</label>
+            <label>@Model.NomCategorie</label><br />
+            <label class="titre_coleur">Résumé :</label><br />
+            <label>@Model.ResumeLivre</label>
+            <div>
+           
+                    <a class="button" id="btn_emprunter" asp-controller="Home" asp-action="Contact">Emprunter</a>
+              
+            </div>
+        </div>
+
+
+      
+
     </div>
-    <div class="imagelivre"><img src="@Model.Image" alt="image livre"></div>
+    <div id="list_comm">
+        <label class="titre_coleur"><u>Commentaires :</u></label>
+        <div>
+            <!-- Affichage de la liste des commentaires -->
+            @if (Model.Commentaire != null && Model.Commentaire.Any())
+            {
+                <ul>
+                    @foreach (var commentaire in Model.Commentaire)
+                    {
+                        <li>
+                            <label> Publié par : </label> <label><strong>@commentaire.PseudoUtilisateur</strong></label> <br />
+                            <label> Date de publication : </label> <label>@commentaire.DateCommentaire.ToShortDateString()</label><br />
+                            <label> @commentaire.Commentaire</label>
+                            
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Aucun commentaire pour ce livre.</p>
+            }
+        </div>
+        <div>
+            <a id="avis" href="#form_comm">Voulez vous ajouter un commentaire ?</a>
+        </div>
+    </div>
+    <div id="form_comm">
 
 
 
+        <form class="ajoutCommentaire" asp-controller="Livre" asp-action="AjouterCommentaire" method="post">
+                <input type="hidden" asp-for="ISBN" value="@Model.ISBN" />
+                <div id="input-comm">
+                <label asp-for="Commentaire" class="titre_coleur">Ajouter votre commentaire :</label>
+                    <!-- Utilisation de <textarea> au lieu de <input> -->
+                    <textarea asp-for="@Model.Commentaire"></textarea>
+                    <span asp-validation-for="Commentaire" class="text-danger"></span>
+                </div>
+                <button type="submit" class="button">Ajouter</button>
+            </form>
+
+  
+    </div>
 </div>
+
+@{
+    if (ViewData.ContainsKey("ValidateMessage"))
+    {
+        <p>@ViewData["ValidateMessage"]</p>
+    }
+}
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -1,93 +1,31 @@
-﻿<div class="container1">
-    <div id="slide">
-        <div class="item" style="background-image: url();">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>See more</button>
+﻿@{
+    // Définition du titre de la page
+    ViewData["Title"] = "livres";
+}
+
+<div class="container_livres">
+@*     La boucle @foreach parcourt chaque livre contenu dans la liste "livres" passée à la vue via ViewData
+ *@    @foreach (var item in (List<Livre>)ViewData["livres"]!)
+    {
+        <a asp-controller="Livre" asp-action="Detail" asp-route-id="@(item.ISBN)">
+            <!-- Début de la section pour chaque livre -->
+            <div>
+                <!-- Affichage de l'image du livre -->
+                <div><img src="@(item.image)" /></div>
+                <!-- Affichage du titre du livre -->
+                <div>@(item.TitreLivre)</div>
+                @* <!-- Affichage du résumé du livre -->
+                <div class="des">@(item.ResumeLivre)</div> *@
             </div>
-        </div>
-        <div class="item" style="background-image: url();">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(3.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(4.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(5.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(6.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(../);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>See more</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(4.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(3.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(4.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(5.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-        <div class="item" style="background-image: url(6.jpg);">
-            <div class="content">
-                <div class="name">LUNDEV</div>
-                <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                <button>Détail</button>
-            </div>
-        </div>
-    </div>
-    <div class="buttons">
-        <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
-        <button id="next"><i class="fa-solid fa-angle-right"></i></button>
-    </div>
+        </a>
+    }
 </div>
 
+@{
+    // Vérification de l'existence du message de validation
+    if (ViewData.ContainsKey("ValidateMessage"))
+    {
+        // Affichage du message de validation
+        <p>@ViewData["ValidateMessage"]</p>
+    }
+}

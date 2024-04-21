@@ -35,10 +35,17 @@
             </div>
 
         </div>
-        <button class="button" type="submit">Connexion</button>
+        <div id="div-submit">
+            <div id="keep-logged">
+                <label asp-for="KeepLoggedIn">Rester connecté</label>
+                <input type="checkbox" placeholder="Keep me logged in" asp-for="KeepLoggedIn">
+            </div>
+            
+            <button class="button" type="submit">Connexion</button>
+        </div>
+       
 
-        <label asp-for="KeepLoggedIn"></label>
-        <input type="checkbox" placeholder="Keep me logged in" asp-for="KeepLoggedIn">
+       
 
         @if (Context.Request.Query.ContainsKey("ReturnURL"))
         {

@@ -10,12 +10,12 @@ namespace MagicBook.Models
 
 
         [Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        [StringLength(14, MinimumLength = 10, ErrorMessage = "un ISBN doit être 13 caractères.")]
+        [StringLength(14, MinimumLength = 5, ErrorMessage = "un ISBN doit être 13 caractères.")]
         [Display(Name = "ISBN")]
         public string ISBN { get; set; }
 
         [Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        [StringLength(28, MinimumLength = 10, ErrorMessage = "La longueur doit être superieur a 10 caractéres.")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "La longueur doit être superieur a 10 caractéres.")]
         [Display(Name = "Titre")]
         public string TitreLivre { get; set; }
 
