@@ -1,6 +1,8 @@
-﻿using MagicBook.Models;
+﻿using Dapper;
+using MagicBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using System.Security.Claims;
 
 namespace MagicBook.Controllers
 {
@@ -19,8 +21,9 @@ namespace MagicBook.Controllers
 
 
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
+            ViewData["ISBN"] = id;
             return View();
         }
 

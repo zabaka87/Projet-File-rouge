@@ -69,7 +69,7 @@ namespace MagicBook.Controllers // Définit le namespace MagicBook.Controllers p
                     {
                         return Redirect(Request.Form["ReturnURL"]);
                     }
-                    return RedirectToAction("Index", "Utilisateur");
+                    return RedirectToAction("Index", "Home");
                 }
             }
 

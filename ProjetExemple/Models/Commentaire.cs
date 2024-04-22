@@ -14,6 +14,8 @@ namespace MagicBook.Models // Définit le namespace MagicBook.Models pour les mo
 
         public int? IdUtilisateur { get; set; } // Déclare une propriété pour l'identifiant de l'utilisateur qui a fait le commentaire.
 
-      
+        public string ISBN { get; set; }
+
+
     }
 }

@@ -1,17 +1,17 @@
-﻿
+﻿@model Commentaire
 
 <div id="form_comm">
 
 
 
-    <form class="ajoutCommentaire" asp-controller="Livre" asp-action="AjouterCommentaire" method="post">
-        @* <input type="hidden" asp-for="ISBN" value="@Model.ISBN" />
+    <form class="ajoutCommentaire" asp-controller="Commentaire" asp-action="AjouterCommentaire" method="post">
+        <input type="hidden" asp-for="ISBN" value="@ViewData["ISBN"]" />
         <div id="input-comm">
-            <label asp-for="Commentaire" class="titre_coleur">Ajouter votre commentaire :</label>
+            <label asp-for="commentaire" class="titre_coleur">Ajouter votre commentaire :</label>
             <!-- Utilisation de <textarea> au lieu de <input> -->
-            <textarea asp-for="@Model.Commentaire"></textarea>
-            <span asp-validation-for="Commentaire" class="text-danger"></span>
-        </div> *@
+            <textarea asp-for="@Model.commentaire"></textarea>
+            <span asp-validation-for="commentaire" class="text-danger"></span>
+        </div>
         <button type="submit" class="button">Ajouter</button>
     </form>
 
