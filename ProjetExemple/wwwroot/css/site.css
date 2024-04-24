@@ -357,4 +357,10 @@ input {
 #keep-logged input {
     margin-left: 10px;
 }
-   
+/*barre defs recherche
+*/
+#site-search {
+    border-radius: 15px;
+    background-color: #ced4da;
+    border: 2px solid rgb(164, 95, 31);
+}

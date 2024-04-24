@@ -35,7 +35,7 @@ namespace MagicBook.Controllers // Définit le namespace MagicBook.Controllers p
         [HttpPost]
         public async Task<IActionResult> Login(Utilisateur utilisateur)
         {
-            string query = "SELECT NomUtilisateur, EmailUtilisateur, Password FROM Utilisateur WHERE EmailUtilisateur = @EmailUtilisateur";
+            string query = "SELECT IdUtilisateur, NomUtilisateur, EmailUtilisateur, Password FROM Utilisateur WHERE EmailUtilisateur = @EmailUtilisateur";
 
             using (var connexion = new MySqlConnection(_connexionString))
             {
@@ -48,7 +48,8 @@ namespace MagicBook.Controllers // Définit le namespace MagicBook.Controllers p
                     var claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.NameIdentifier, utilisateurFromDB.EmailUtilisateur),
-                        new Claim(ClaimTypes.Name, utilisateurFromDB.NomUtilisateur)
+                        new Claim(ClaimTypes.Name, utilisateurFromDB.NomUtilisateur),
+                        new Claim(ClaimTypes.SerialNumber, utilisateurFromDB.IdUtilisateur.ToString())
                     };
 
                     // Crée une identité contenant les revendications de l'utilisateur.
@@ -62,6 +63,7 @@ namespace MagicBook.Controllers // Définit le namespace MagicBook.Controllers p
                     };
 
                     // Connecte l'utilisateur en créant un cookie d'authentification.
+
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
                     // Redirige l'utilisateur vers la page d'accueil.

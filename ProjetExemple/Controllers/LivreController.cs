@@ -34,7 +34,7 @@ namespace MagicBook.Controllers
                 {
                     // Exécution de la requête SQL et récupération des détails du livre
                     LivreViewModel livre = connexion.QuerySingle<LivreViewModel>(queryLivre, new { id = id });
-                    List<CommentaireViewModel> commentaires =connexion.Query<CommentaireViewModel>(queryCommentaire, new { id = id }).ToList();
+                    List<CommentaireViewModel> commentaires = connexion.Query<CommentaireViewModel>(queryCommentaire, new { id = id }).ToList();
 
                     // Ajout des commentaires récupérés dans le ViewModel
                     if (commentaires != null)
@@ -168,15 +168,18 @@ namespace MagicBook.Controllers
             return viewModel;
         }
 
-       
-
-
-
-
-
 
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 

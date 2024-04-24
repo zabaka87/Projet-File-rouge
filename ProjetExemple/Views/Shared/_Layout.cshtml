@@ -24,10 +24,26 @@
 
                 <ul class="conteneur-des-boutons">
                     <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
-                    <li><a asp-controller="Access" asp-action="Login">LOGIN</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-controller="Access" asp-action="Logout">LOGOUT</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Access" asp-action="Login">LOGIN</a></li>
+                    }
+                    
+                    
                     <li><a asp-controller="Home" asp-action="APropos">A PROPOS</a></li>
                     <li><a asp-controller="Home" asp-action="Contact">CONTACT</a></li>
                     <li><a asp-controller="Livre" asp-action="Ajouter">LIVRES</a></li>
+                    <li>
+                        
+                        <label for="site-search"></label>
+                        <input type="search" id="site-search" name="q" placeholder=" Rechercher Un Livre" />
+
+                        <button class="button">Search</button>
+                    </li>
                    
                    
                 </ul>

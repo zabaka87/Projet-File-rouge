@@ -23,18 +23,14 @@ namespace MagicBook.Models
         public string? ResumeLivre { get; set; }
 
 
-        //[Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        //[StringLength(13, MinimumLength = 13, ErrorMessage = "Date de publication Obligatoire.")]
         [Display(Name = "Date Publication")]
         public DateTime? DatePublicationLivre { get; set; }
 
-        //[Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        //[StringLength(13, MinimumLength = 13, ErrorMessage = "Entrer Le Nom De L'editeur.")]
+        
         [Display(Name = "Editeur")]
         public int IdEditeur { get; set; }
 
-        //[Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        //[StringLength(13, MinimumLength = 13, ErrorMessage = "veuiller choisire le genre.")]
+   
         [Display(Name = "Genre")]
         public int IdCategorie { get; set; }
 

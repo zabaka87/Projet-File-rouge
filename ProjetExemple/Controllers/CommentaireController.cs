@@ -1,11 +1,13 @@
 ﻿using Dapper;
 using MagicBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Security.Claims;
 
 namespace MagicBook.Controllers
 {
+    [Authorize]
     public class CommentaireController : Controller
     {
 
@@ -48,7 +50,7 @@ namespace MagicBook.Controllers
                     {
                         string idUtilis = User.FindFirstValue(ClaimTypes.SerialNumber);
                         // Insertion du commentaire
-                        connexion.Execute(queryInsertCommentaire, new { Commentaire = AjoutCom.commentaire, IdUtilisateur = User.FindFirstValue(ClaimTypes.SerialNumber) }, transaction);
+                        connexion.Execute(queryInsertCommentaire, new { Commentaire = AjoutCom.commentaire, IdUtilisateur = idUtilis }, transaction);
 
                         // Récupération de l'ID du commentaire inséré
                         var idCommentaire = connexion.ExecuteScalar<int>("SELECT LAST_INSERT_ID();", transaction);
