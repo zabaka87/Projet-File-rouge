@@ -34,8 +34,7 @@ namespace MagicBook.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AjouterCommentaire(Commentaire AjoutCom)
         {
-            //if (ModelState.IsValid)
-            //{
+           
             string queryInsertCommentaire = "INSERT INTO Commentaire (commentaire, DateCommentaire, IdUtilisateur) " +
                                             "VALUES (@Commentaire, NOW(), @IdUtilisateur);";
 

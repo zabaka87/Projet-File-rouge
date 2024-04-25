@@ -7,37 +7,37 @@ namespace MagicBook.Models
 {
     public class Livre
     {
-
-
-        [Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        [StringLength(14, MinimumLength = 5, ErrorMessage = "un ISBN doit être 13 caractères.")]
-        [Display(Name = "ISBN")]
+        // Propriété ISBN du livre
+        [Required(ErrorMessage = "Ce champ est Obligatoire.")] // Annotation pour définir que ce champ est requis
+        [StringLength(14, MinimumLength = 5, ErrorMessage = "un ISBN doit être 13 caractères.")] // Annotation pour définir la longueur de la chaîne
+        [Display(Name = "ISBN")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
         public string ISBN { get; set; }
 
-        [Required(ErrorMessage = "Ce champ est Obligatoire.")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "La longueur doit être superieur a 10 caractéres.")]
-        [Display(Name = "Titre")]
+        // Propriété TitreLivre du livre
+        [Required(ErrorMessage = "Ce champ est Obligatoire.")] // Annotation pour définir que ce champ est requis
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "La longueur doit être superieur a 10 caractéres.")] // Annotation pour définir la longueur de la chaîne
+        [Display(Name = "Titre")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
         public string TitreLivre { get; set; }
 
-        [Display(Name = "Resumer")]
-        public string? ResumeLivre { get; set; }
+        // Propriété ResumeLivre du livre
+        [Display(Name = "Resumer")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
+        public string? ResumeLivre { get; set; } // Propriété pouvant être null
 
+        // Propriété DatePublicationLivre du livre
+        [Display(Name = "Date Publication")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
+        public DateTime? DatePublicationLivre { get; set; } // Propriété pouvant être null
 
-        [Display(Name = "Date Publication")]
-        public DateTime? DatePublicationLivre { get; set; }
-
-        
-        [Display(Name = "Editeur")]
+        // Propriété IdEditeur du livre
+        [Display(Name = "Editeur")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
         public int IdEditeur { get; set; }
 
-   
-        [Display(Name = "Genre")]
+        // Propriété IdCategorie du livre
+        [Display(Name = "Genre")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
         public int IdCategorie { get; set; }
 
-        [Display(Name = "Image")]
-        public string? image { get; set; }
-
-
-       
+        // Propriété image du livre
+        [Display(Name = "Image")] // Annotation pour définir le nom à afficher dans l'interface utilisateur
+        public string? image { get; set; } // Propriété pouvant être null
     }
 }
+

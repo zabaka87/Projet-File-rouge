@@ -1,35 +1,32 @@
-﻿@model LivreViewModel 
+﻿@model LivreViewModel // Définit le type de modèle utilisé dans cette vue
+
 @{
-    ViewData["Title"] = "Détail " + Model.TitreLivre;
+    ViewData["Title"] = "Détail " + Model.TitreLivre; // Définit le titre de la page
 }
 <div class="container">
-    <h1>@Model.TitreLivre</h1>
+    <h1>@Model.TitreLivre</h1> <!-- Affiche le titre du livre -->
+
     <div id="detail_livre">
-        <div class="imagelivre"><img src="@Model.Image" alt="image livre"></div>
+        <div class="imagelivre"><img src="@Model.Image" alt="image livre"></div> <!-- Affiche l'image du livre -->
         <div class="detaillivre">
             <label class="titre_coleur">Référence Livre :</label>
-            <label>@Model.ISBN</label><br />
+            <label>@Model.ISBN</label><br /> <!-- Affiche l'ISBN du livre -->
             <label class="titre_coleur">Titre :</label>
-            <label>@Model.TitreLivre</label><br />
+            <label>@Model.TitreLivre</label><br /> <!-- Affiche le titre du livre -->
             <label class="titre_coleur">Date Publication :</label>
-            <label>@Model.DatePublicationLivre</label><br />
+            <label>@Model.DatePublicationLivre</label><br /> <!-- Affiche la date de publication du livre -->
             <label class="titre_coleur">Nom Editeur :</label>
-            <label>@Model.NomEditeur</label><br />
+            <label>@Model.NomEditeur</label><br /> <!-- Affiche le nom de l'éditeur du livre -->
             <label class="titre_coleur">Categorie :</label>
-            <label>@Model.NomCategorie</label><br />
+            <label>@Model.NomCategorie</label><br /> <!-- Affiche la catégorie du livre -->
             <label class="titre_coleur">Résumé :</label><br />
-            <label>@Model.ResumeLivre</label>
+            <label>@Model.ResumeLivre</label> <!-- Affiche le résumé du livre -->
             <div>
-           
-                    <a class="button" id="btn_emprunter" asp-controller="Home" asp-action="Contact">Emprunter</a>
-              
+                <a class="button" id="btn_emprunter" asp-controller="Home" asp-action="Contact">Emprunter</a> <!-- Bouton pour emprunter le livre -->
             </div>
         </div>
-
-
-      
-
     </div>
+
     <div id="list_comm">
         <label class="titre_coleur"><u>Commentaires :</u></label>
         <div>
@@ -40,34 +37,30 @@
                     @foreach (var commentaire in Model.Commentaire)
                     {
                         <li>
-                            <label> @commentaire.Commentaire</label><br />
-                            <label id="lbl-comm"><u> Publié le  @commentaire.DateCommentaire.ToShortDateString()</u> par : <strong>@commentaire.PseudoUtilisateur</strong></label>
-                           
-
+                            <label> @commentaire.Commentaire</label><br /> <!-- Affiche le commentaire -->
+                            <label id="lbl-comm"><u> Publié le  @commentaire.DateCommentaire.ToShortDateString()</u> par : <strong>@commentaire.PseudoUtilisateur</strong></label> <!-- Affiche la date et l'auteur du commentaire -->
                         </li>
                     }
                 </ul>
             }
             else
             {
-                <p>Aucun commentaire pour ce livre.</p>
+                <p>Aucun commentaire pour ce livre.</p> <!-- Message affiché s'il n'y a pas de commentaires -->
             }
         </div>
         <div>
-            <a id="avis" asp-controller="Commentaire" asp-action="Index" asp-route-id="@(Model.ISBN)">Voulez vous ajouter un commentaire ?</a>
+            <a id="avis" asp-controller="Commentaire" asp-action="Index" asp-route-id="@(Model.ISBN)">Voulez vous ajouter un commentaire ?</a> <!-- Lien pour ajouter un commentaire -->
         </div>
     </div>
-    
 </div>
 
 @{
     if (ViewData.ContainsKey("ValidateMessage"))
     {
-        <p>@ViewData["ValidateMessage"]</p>
+        <p>@ViewData["ValidateMessage"]</p> <!-- Affiche un message de validation -->
     }
 }
+
 @section Scripts {
-
-    <partial name="_ValidationScriptsPartial" />
-
+    <partial name="_ValidationScriptsPartial" /> <!-- Inclusion des scripts de validation -->
 }

@@ -168,7 +168,73 @@ namespace MagicBook.Controllers
             return viewModel;
         }
 
+        [HttpGet]
+        public IActionResult Rechercher(string ThemeRecherche)
+        {
 
+            if (ThemeRecherche == null)
+            {
+                return RedirectToAction("Home", "Accueil");
+            }
+
+
+            //cette requête sélectionne tous les livres dont l'ISBN ou le titre contient la chaîne de recherche.
+            string QueryRecherche = "SELECT * FROM Livre  join Categorie on Livre.Idcategorie = Categorie.IdCategorie join Editeur on Livre.IdEditeur = Editeur.IdEditeur where ISBN like '%" + @ThemeRecherche + "%'  or TitreLivre like '%" + @ThemeRecherche + "%'";
+
+            //cette requête sélectionne tous les auteurs dont le nom ou le prénom contient la chaîne de recherche.
+            string queryAuteur = "select * from Auteur a where a.NomAuteur like '%" + @ThemeRecherche + "%' OR a.PrenomAuteur like '%" + @ThemeRecherche + "%' OR CONCAT(a.PrenomAuteur, ' ', a.NomAuteur) like '%" + @ThemeRecherche + "%'";
+
+            //cette requête sélectionne tous les livres écrits par un auteur donné.
+            string queryEstEcrit = "select * from Livre_Auteur e join Livre l on e.ISBN=l.ISBN where e.IdAuteur = @IdAuteur";
+
+            // Creation d un objet ListeLivreViewModel qui sera utilisé pour stocker les resultats de la recherche
+            ListeLivresViewModel ListeLivresRecherche = new ListeLivresViewModel();
+
+            //Ouverture d une connexion a la base de donnée MySQL 
+            using (var connexion = new MySqlConnection(_connexionString))
+            {
+                // Execution de la requete 'QueryRecherche' et stockage du resultat dans la proprieté 'Livres' de l objet ListLivreViewModel
+                ListeLivresRecherche.livres = connexion.Query<LivreViewModel>(QueryRecherche, new { ThemeRecherche = ThemeRecherche }).ToList();
+
+                // Execution de la requete 'QueryAuteur' et stockage du resultat dans une liste d auteurs contenue dans un objet LivreViewModel
+                List<AuteurViewModel> Auteurs = connexion.Query<AuteurViewModel>(queryAuteur, new { ThemeRecherche = ThemeRecherche }).ToList();
+
+
+                // Pour chaque auteur de la liste, execution de la requete 'estEcrit' et ajoute les resultats a la proprieté 'Livres' de l objet 'ListeLivreViewModel'
+                foreach (AuteurViewModel auteur in Auteurs)
+                {
+
+                    ListeLivresRecherche.livres.AddRange(connexion.Query<LivreViewModel>(queryEstEcrit, new { IdAuteur = auteur.IdAuteur }).ToList());
+                }
+
+                // Pour chaque livre dansl a propriete de l objet 'ListeLivreViewModel', execution d une requete SQL qui selectionne les noms et les prenoms des auteurs du livre et stocke le resultat dans la proprieté 'auteurs' du livre
+                foreach (LivreViewModel livre in ListeLivresRecherche.livres)
+                {
+                    string QueryAuteur = "select Auteur.NomAuteur , Auteur.PrenomAuteur from Auteur join Livre_Auteur on Auteur.IdAuteur = Livre_Auteur.IdAuteur join Livre on Livre_Auteur.ISBN = Livre.ISBN where Livre.ISBN = @ISBN";
+
+                    livre.auteurs = connexion.Query<AuteurViewModel>(QueryAuteur, new { ISBN = livre.ISBN }).ToList();
+
+                }
+
+                // Cette requete selectionne les Nom De categorie de livre de la base de donnée
+                string selectQueryCategorie = "select distinct IdCategorie, NomCategorie from Categorie;";
+
+                // Execution de la requete 'selectQueryCategorie' ee stockage des resultats dans une liste de 'SelectListItem ' qui sera utilisée pour afficher les categorie dans  une liste deroulante dans la vue
+                List<genres> Categories = connexion.Query<genres>(selectQueryCategorie).ToList();
+                foreach (genres categorie in Categories)
+                {
+                    ListeLivresRecherche.Categories.Add(new SelectListItem { Text = genres.IdCategorie, Value = genres.NomCategorie.ToString() });
+                }
+
+                if (ListeLivresRecherche.livres == null || !ListeLivresRecherche.livres.Any())
+                {
+                    ViewData["ValidateMessage"] = "Aucun livre n'a été trouvé.";
+                }
+
+                // retourne la vue 'PageDAccueil' avec l objet 'ListeLivresViewModel' comme modele
+                return Json(ListeLivresRecherche.livres);
+            }
+        }
     }
 }
 
