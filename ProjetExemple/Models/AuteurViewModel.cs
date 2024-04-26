@@ -12,8 +12,8 @@ namespace MagicBook.Models
             [Display(Name = "NomAuteur")] // Spécifie le nom à afficher pour le nom de l'auteur.
             public string? NomAuteur { get; set; } // Déclare une propriété pour le nom de l'auteur.
 
-            [Display(Name = "PrenomAuteur")] // Spécifie le nom à afficher pour le nom de l'auteur.
-            public string? PrenomAuteur { get; set; } // Déclare une propriété pour le nom de l'auteur.
+            [Display(Name = "PrenomAuteur")] // Spécifie le nom à afficher pour le prenom de l'auteur.
+            public string? PrenomAuteur { get; set; } // Déclare une propriété pour le prenom de l'auteur.
         }
     }
 }

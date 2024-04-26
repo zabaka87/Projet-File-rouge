@@ -27,5 +27,6 @@ namespace MagicBook.Models // Définit le namespace MagicBook.Models pour les mo
         public string Image { get; set; } // Déclare une propriété pour l'image du livre.
 
         public List<CommentaireViewModel> Commentaire { get; set; } = new List<CommentaireViewModel>(); // Déclare une propriété pour la liste des commentaires du livre.
+        public List<AuteurViewModel> auteurs { get; internal set; } = new List<AuteurViewModel>();
     }
 }
