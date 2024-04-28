@@ -6,23 +6,25 @@
 }
 main {
     width: 100%;
-    display: block;
+    display: flex;
     justify-content: center;
 }
-header {
-    display: flex;
-}
+
 
 .div_nav {
     display: flex;
 }
-
+.div-menu {
+    display: flex;
+}
 .logo {
     width: 100px;
     width: 150px;
     height: 150px;
 }
-
+header{
+    width: 100%;
+}
 header nav {
     width: 100%;
     position: relative;
@@ -65,7 +67,7 @@ body {
     text-align: center;
     justify-content: inherit;
     margin: 0;
-    padding: 0;
+    padding: 24px;
     color: #fff;
     display: flex;
     align-items: center;
@@ -96,6 +98,7 @@ input {
 }
 
 .button {
+    font-weight: bold;
     text-decoration: none;
     display: inline-block;
     font-family: "Times New Roman", Times, serif;
@@ -363,4 +366,110 @@ input {
     border-radius: 15px;
     background-color: #ced4da;
     border: 2px solid rgb(164, 95, 31);
+    height: 28px;
 }
+
+.menu-toggle {
+    display:none;
+}
+.div_nav {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    main{
+        display:block;
+    }
+   
+}
+    /**menu mobile**/
+    /* Styles pour les écrans de petite taille (mobile) */
+ @media screen and (max-width: 768px) {
+        header {
+            width: 100%;
+        }
+
+        .div_nav {
+            display: none; /* Masquer la barre de navigation par défaut */
+        }
+
+        nav {
+            text-align: left;
+        }
+
+        ul {
+        }
+
+        .menu-toggle {
+            display: block; /* Afficher le bouton du menu hamburger */
+            cursor: pointer; /* Définir le curseur sur pointer pour indiquer que c'est un élément cliquable */
+            font-size: 26px;
+        }
+
+        .conteneur-des-boutons {
+            width: 100%;
+            border: none !important;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            flex-direction: column; /* Aligner verticalement les éléments */
+            position: absolute; /* Position absolue pour empiler le menu hamburger */
+            top: 0; /* Décaler le menu vers le bas */
+            left: 0; /* Aligner le menu à gauche */
+            background-color: #344d59; /* Couleur de fond */
+            padding: 10px; /* Espacement intérieur */
+            border-radius: 7px;
+        }
+
+            .conteneur-des-boutons li {
+                margin-bottom: 5px; /* Espacement entre les éléments */
+            }
+
+        .menu-open {
+            display: flex !important; /* Afficher le menu lorsque le bouton hamburger est cliqué */
+        }
+
+        .div-menu {
+            width: 100%;
+            display: block;
+        }
+
+        .div-menu-mobile {
+            width: 100% !important;
+            display: flex;
+            justify-content: space-between;
+            width: auto;
+            align-items: center;
+            padding: 10px 24px;
+        }
+
+            .div-menu-mobile img {
+                width: 80px;
+                height: 80px;
+            }
+
+        .container_livres {
+            display: block;
+        }
+
+        .conteneur-des-boutons a {
+            width: 145px; /* ajustez cette valeur en fonction de la largeur souhaitée */
+            overflow: hidden; /* pour masquer le texte supplémentaire si nécessaire */
+            white-space: nowrap; /* pour empêcher le texte de se casser sur plusieurs lignes */
+        }
+
+        .element-livre {
+            margin-bottom: 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            border-radius: 10px;
+            padding: 13px 0;
+        }
+
+        /**details livre*/
+    #detail_livre {
+        display: block;
+    }
+
+    .imagelivre {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    }

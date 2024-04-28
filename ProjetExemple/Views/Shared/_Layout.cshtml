@@ -6,46 +6,58 @@
 <head>
     <meta charset="UTF-8"> <!-- Encodage de caractères -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Définit la vue initiale pour les appareils mobiles -->
-    <link rel="stylesheet" href="style2.css"> <!-- Lien vers le fichier CSS pour le style de la page -->
-    <script src="script2.js"></script> <!-- Lien vers le fichier JavaScript pour les fonctionnalités de la page -->
+    
+    <!-- Lien vers le fichier JavaScript pour les fonctionnalités de la page -->
     <title>MagicBook</title> <!-- Titre de la page -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> <!-- Lien vers le framework Bootstrap -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> <!-- Lien vers le fichier CSS pour le site -->
-    <link rel="stylesheet" href="~/ProjetExemple.styles.css" asp-append-version="true" /> <!-- Lien vers le fichier CSS spécifique au projet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Lien vers la bibliothèque d'icônes Font Awesome -->
 </head>
 
 <body>
     <header>
-        <!-- En-tête de la page -->
+        <!-- barre de menu desktop -->
+        <div class="div-menu">
+            <div class="div-menu-mobile">
+                <div>
+                    <img src="/images/Livre/Capture d’écran.png" class="logo"> <!-- Logo du site -->
+                </div>
+                <div class="menu-toggle">☰</div>
+            </div>
+            
+            <div class="div_nav">
+                <nav>
+                    <!-- Barre de navigation -->
+                    <ul class="conteneur-des-boutons">
+                        <li><a asp-controller="Home" asp-action="Index">HOME</a></li> <!-- Lien vers la page d'accueil -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="Access" asp-action="Logout">LOGOUT</a></li> <!-- Lien de déconnexion pour les utilisateurs authentifiés -->
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Access" asp-action="Login">LOGIN</a></li> <!-- Lien de connexion pour les utilisateurs non authentifiés -->
+                        }
+                        <li><a asp-controller="Home" asp-action="APropos">A PROPOS</a></li> <!-- Lien vers la page "À Propos" -->
+                        <li><a asp-controller="Home" asp-action="Contact">CONTACT</a></li> <!-- Lien vers la page de contact -->
+                        <li><a asp-controller="Livre" asp-action="Ajouter">LIVRES</a></li> <!-- Lien vers la page pour ajouter des livres -->
+                        
+                    </ul>
+                </nav>
+               
+               
+                
+            </div>
+           
+        </div>
+        <!-- Champ de recherche -->
         <div>
-            <img src="/images/Livre/Capture d’écran.png" class="logo"> <!-- Logo du site -->
+            <label for="site-search"></label>
+            <input type="search" id="site-search" name="q" placeholder=" Rechercher Un Livre" />
+            <button class="button">Search</button> <!-- Bouton de recherche -->
         </div>
-        <div class="div_nav">
-            <nav>
-                <!-- Barre de navigation -->
-                <ul class="conteneur-des-boutons">
-                    <li><a asp-controller="Home" asp-action="Index">HOME</a></li> <!-- Lien vers la page d'accueil -->
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-controller="Access" asp-action="Logout">LOGOUT</a></li> <!-- Lien de déconnexion pour les utilisateurs authentifiés -->
-                    }
-                    else
-                    {
-                        <li><a asp-controller="Access" asp-action="Login">LOGIN</a></li> <!-- Lien de connexion pour les utilisateurs non authentifiés -->
-                    }
-                    <li><a asp-controller="Home" asp-action="APropos">A PROPOS</a></li> <!-- Lien vers la page "À Propos" -->
-                    <li><a asp-controller="Home" asp-action="Contact">CONTACT</a></li> <!-- Lien vers la page de contact -->
-                    <li><a asp-controller="Livre" asp-action="Ajouter">LIVRES</a></li> <!-- Lien vers la page pour ajouter des livres -->
-                    <li>
-                        <!-- Champ de recherche -->
-                        <label for="site-search"></label>
-                        <input type="search" id="site-search" name="q" placeholder=" Rechercher Un Livre" />
-                        <button class="button">Search</button> <!-- Bouton de recherche -->
-                    </li>
-                </ul>
-            </nav>
-        </div>
+       
+      
+        
     </header>
     <main>
         @RenderBody() <!-- Contenu principal de la page -->
@@ -61,3 +73,4 @@
 </body>
 
 </html>
+
